@@ -1,4 +1,4 @@
-#!/usr/bin/env ruby
+
 # encoding: utf-8
 
 require 'sushi_fabric'
@@ -33,7 +33,7 @@ vcf-stats<br/>
     }.merge(extract_columns(@inherit_tags))
   end
   def commands
-    run_RApp("EzAppVcfStats")
+    run_RApp("EzAppVcfStats", lib_path:  "/srv/GT/analysis/jonas/R_LIBS")
     #command = "vcf-stats #{File.join("$GSTORE_DIR", @dataset[0]['Filtered VCF [File]'])} -p #{@params['name']}/vcf_stats"
   end
 end
