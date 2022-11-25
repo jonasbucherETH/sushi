@@ -22,6 +22,7 @@ vcf-stats<br/>
     @params['name'] = 'vcf_stats'
     @params['mail'] = ""
     @modules = ["Tools/vcftools/0.1.16"]
+    @modules = ["Tools/PLINK/1.9beta6.21"]
     @inherit_tags = ["Factor", "B-Fabric", "Characteristic"]
   end
   def next_dataset
