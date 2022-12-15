@@ -14,7 +14,7 @@ class PCAMDSApp <  SushiFabric::SushiApp
     @description =<<-EOS
 vcf-stats<br/>
     EOS
-    @required_columns = ['Name', 'Filtered VCF', 'Dummy']
+    @required_columns = ['Name', 'Filtered VCF', 'Grouping File', 'Dummy']
     @required_params = ['name']
     @params['cores'] = '1'
     @params['ram'] = '50'
