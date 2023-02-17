@@ -14,7 +14,7 @@ class PCAMDSApp <  SushiFabric::SushiApp
     @description =<<-EOS
 vcf-stats<br/>
     EOS
-    @required_columns = ['Name', 'Filtered VCF', 'Grouping File', 'Dummy']
+    @required_columns = ['Name', 'Filtered VCF', 'Grouping File']
     @required_params = ['name']
     @params['cores'] = '1'
     @params['ram'] = '50'
@@ -29,7 +29,8 @@ vcf-stats<br/>
     report_link = File.join(report_file, '00index.html')
     {'Name'=>@params['name'],
      'Report [File]'=>report_file,
-     'Html [Link]'=>report_link,
+     'Static Report [Link]'=>report_link,
+     'Interactive report [Link]'=>"https://fgcz-shiny.uzh.ch/PopGen_Structure?data=#{report_file}",
     }.merge(extract_columns(@inherit_tags))
   end
   def commands
