@@ -21,6 +21,7 @@ vcf-stats<br/>
     @params['scratch'] = '100'
     @params['name'] = 'pca_mds'
     @params['mail'] = ""
+    @params['Rversion'] = ["Dev/R/4.2.2"]
     @modules = ["Tools/PLINK/1.9beta6.21"]
     @inherit_tags = ["Factor", "B-Fabric", "Characteristic"]
   end
@@ -29,7 +30,8 @@ vcf-stats<br/>
     report_link = File.join(report_file, '00index.html')
     {'Name'=>@params['name'],
      'Report [File]'=>report_file,
-     'Html [Link]'=>report_link,
+     'Static Report [Link]'=>report_link,
+     'Interactive report [Link]'=>"https://fgcz-shiny.uzh.ch/PopGen_Structure?data=#{report_file}",
     }.merge(extract_columns(@inherit_tags))
   end
   def commands
