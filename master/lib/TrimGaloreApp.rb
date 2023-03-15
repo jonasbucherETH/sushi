@@ -16,18 +16,17 @@ Trim Galore! is a wrapper script to automate quality and adapter trimming as wel
 Refer to <a href='https://www.bioinformatics.babraham.ac.uk/projects/trim_galore'>https://www.bioinformatics.babraham.ac.uk/projects/trim_galore</a>
     EOS
     @required_columns = ['Name','Read1']
-    @required_params = ['']
+    @required_params = ['paired']
     # optional params
-    quality_threshold
     @params['cores'] = '8'
     @params['ram'] = '15'
     @params['scratch'] = '100'
     @params['paired'] = false
+    @params['paired', 'description'] = 'either the reads are paired-ends or single-end'
     @params['sequencing_method'] = ['MspI-digested RRBS', 'Other']
     @params['sequencing_method', 'description'] = 'If your DNA material was digested with MseI instead of MspI, chose Other'
     @params['rrbs_library'] = ['Directional', 'Non-directional']
     @params['rrbs_library', 'description'] = 'RRBS library type'
-    @params['paired', 'description'] = 'either the reads are paired-ends or single-end'
     @params['quality_type'] = ['phred33', 'phred64']
     @params['quality_type', 'description'] = 'Fastq quality score type, if you use Illumina HiSeq or MySeq, chose phred33'
     @params['quality_threshold'] = '20'
