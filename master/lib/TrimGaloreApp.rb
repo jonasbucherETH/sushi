@@ -23,10 +23,10 @@ Refer to <a href='https://www.bioinformatics.babraham.ac.uk/projects/trim_galore
     @params['scratch'] = '100'
     @params['paired'] = false
     @params['paired', 'description'] = 'either the reads are paired-ends or single-end'
-    @params['sequencing_method'] = ['MspI-digested RRBS', 'Other']
-    @params['sequencing_method', 'description'] = 'If your DNA material was digested with MseI instead of MspI, chose Other'
-    @params['rrbs_library'] = ['Directional', 'Non-directional']
-    @params['rrbs_library', 'description'] = 'RRBS library type'
+    @params['method_rrbs'] = false
+    @params['method_rrbs', 'description'] = 'If RRBS was used, but the DNA material was digested with MseI instead of MspI, pick false'
+    @params['rrbs_directional'] = true
+    @params['rrbs_directional', 'description'] = 'RRBS library type: true = directional, false = non-directional'
     @params['quality_type'] = ['phred33', 'phred64']
     @params['quality_type', 'description'] = 'Fastq quality score type, if you use Illumina HiSeq or MySeq, chose phred33'
     @params['quality_threshold'] = '20'
@@ -41,9 +41,10 @@ Refer to <a href='https://www.bioinformatics.babraham.ac.uk/projects/trim_galore
     #  'FastQC checking Adapter' => '/srv/GT/databases/adapter/adapter_list.fa',
     #}
     @params['adapter'] = ['', 'illumina', 'nextera', 'small_rna']
-    
+    @params['adapter', 'description'] = 'auto-detects adapter sequence when not specified'
     @params['mail'] = ""
-    @modules = ["QC/TrimGalore"]
+    #@modules = ["QC/TrimGalore"]
+    @modules = ["QC/trim-galore"]
     @inherit_tags = ["Factor"]
   end
   def preprocess
@@ -73,10 +74,10 @@ Refer to <a href='https://www.bioinformatics.babraham.ac.uk/projects/trim_galore
       command << " --paired"
     end
     
-    if @params['sequencing_method'] == 'MspI-digested RRBS'
+    if @params['method_rrbs'] == 'MspI-digested RRBS'
       command << " --rrbs"
     end
-    if @params['rrbs_library'] == 'Non-directional'
+    unless @params['rrbs_directional']
       command << " --non_directional"
     end
     unless @params['adapter'].to_s.empty?

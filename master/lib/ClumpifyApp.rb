@@ -22,7 +22,12 @@ Refer to <a href='https://jgi.doe.gov/data-and-tools/software-tools/bbtools/bb-t
     @params['ram'] = '15'
     @params['scratch'] = '100'
     @params['paired'] = false
-    @params['sequencing_system'] = ['NextSeq', 'Other']
+    @params['sequencing_system'] = {
+          'NextSeq' => 40,
+          'HiSeq 1T/2500' => 40,
+          'HiSeq 3k/4k' => 2500,
+          'Novaseq'  => 12000
+    }
     @params['paired', 'description'] = 'either the reads are paired-ends or single-end'
     @params['mail'] = ""
     @modules = ["Tools/bbmap"]
@@ -46,9 +51,6 @@ Refer to <a href='https://jgi.doe.gov/data-and-tools/software-tools/bbtools/bb-t
   end
   dataset
   end
-  def se_pe
-    @params['paired'] ? 'PE' : 'SE'
-  end
   def commands
     command = ""
     command << "clumpify.sh in=#{File.join(SushiFabric::GSTORE_DIR, @dataset['Read1'])}"
@@ -59,11 +61,18 @@ Refer to <a href='https://jgi.doe.gov/data-and-tools/software-tools/bbtools/bb-t
       command << " in2=#{File.join(SushiFabric::GSTORE_DIR, @dataset['Read2'])} out2=#{output_R2}"
     end
     # [options]
+    
     command << " dedupe=t"
+    command << " optical=t"
+    
+    command << " spany=t"
+    command << " adjacent=t"
     command << " groups=16"
     #command << " reorder=t" # only groups=1, passes=1, and ecc=f
     command << " qin=auto" # auto/33/64
-    
+    dupe_dist = #{@params['illuminaclip']}
+    command << " dupedist=#{@params['sequencing_system']}"
+
     command
   end
 end
