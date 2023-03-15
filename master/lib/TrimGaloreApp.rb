@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 # encoding: utf-8
-Version = '20210414-125050'
+Version = '20230314-131340'
 
 require 'sushi_fabric'
 require_relative 'global_variables'
@@ -34,6 +34,14 @@ Refer to <a href='https://www.bioinformatics.babraham.ac.uk/projects/trim_galore
     @params['quality_threshold', 'description'] = 'Trim	low-quality ends from reads	in addition	to adapter removal.'
     @params['min_length'] = '20'
     @params['min_length', 'description'] = 'Discard a read if it is below a certain length after trimming'
+    
+    #@params['adapter'] = {
+    #  'auto-detect' => '',
+      #'allIllumina-forTrimmomatic-20160202.fa' => '/srv/GT/databases/contaminants/allIllumina-forTrimmomatic-20160202.fa',
+    #  'All Illumina Adapter' => '/srv/GT/databases/contaminants/illuminaContaminants.fa',
+    #  'FastQC checking Adapter' => '/srv/GT/databases/adapter/adapter_list.fa',
+    #}
+    @params['adapter'] = ['', 'illumina', 'nextera', 'small_rna']
     
     @params['mail'] = ""
     @modules = ["QC/TrimGalore"]
@@ -71,6 +79,10 @@ Refer to <a href='https://www.bioinformatics.babraham.ac.uk/projects/trim_galore
     end
     if @params['rrbs_library'] == 'Non-directional'
       command << " --non_directional"
+    end
+    unless @params['adapter'].to_s.empty?
+        #command << "cat #{@params['adapter']} >> #{adapters_fa}\n"
+        command << " --#{@params['adapter']}"
     end
     
     # files
