@@ -30,7 +30,7 @@ Refer to <a href='https://jgi.doe.gov/data-and-tools/software-tools/bbtools/bb-t
     }
     @params['paired', 'description'] = 'either the reads are paired-ends or single-end'
     @params['mail'] = ""
-    @modules = ["Tools/bbmap"]
+    @modules = ["Tools/bbmap/38.89"]
     @inherit_tags = ["Factor"]
   end
   def preprocess
@@ -68,7 +68,7 @@ Refer to <a href='https://jgi.doe.gov/data-and-tools/software-tools/bbtools/bb-t
     command << " spany=t"
     command << " adjacent=t"
     command << " groups=16"
-    #command << " reorder=t" # only groups=1, passes=1, and ecc=f
+    #command << " reorder=t" # only if groups=1, passes=1, and ecc=f
     command << " qin=auto" # auto/33/64
     dupe_dist = #{@params['illuminaclip']}
     command << " dupedist=#{@params['sequencing_system']}"
