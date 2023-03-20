@@ -16,7 +16,7 @@ Clumpify is a tool designed to rapidly group overlapping reads into clumps. This
 Refer to <a href='https://jgi.doe.gov/data-and-tools/software-tools/bbtools/bb-tools-user-guide/clumpify-guide/'>https://jgi.doe.gov/data-and-tools/software-tools/bbtools/bb-tools-user-guide/clumpify-guide/</a>
     EOS
     @required_columns = ['Name','Read1']
-    @required_params = ['paired', 'quality_type', 'sequencing_system']
+    @required_params = ['paired', 'sequencing_system']
     # optional params
     @params['cores'] = '8'
     @params['ram'] = '15'
