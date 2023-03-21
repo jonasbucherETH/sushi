@@ -43,21 +43,21 @@ Refer to <a href='https://jgi.doe.gov/data-and-tools/software-tools/bbtools/bb-t
   end
   def next_dataset
    dataset =  {'Name'=>@dataset['Name'],
-    'Read1 [File]' => File.join(@result_dir, "#{File.basename(@dataset['Read1'].to_s).gsub('trimmed.fastq.gz','clumped.fastq.gz')}"),
+    'Read1 [File]' => File.join(@result_dir, "#{File.basename(@dataset['Read1'].to_s).gsub('.gz', 'clumped.gz')}"),
     'Read Count' => 0
     }.merge(extract_columns(@inherit_tags))
   if @params['paired'] 
-      dataset['Read2 [File]'] = File.join(@result_dir, "#{File.basename(@dataset['Read2'].to_s).gsub('trimmed.fastq.gz','clumped.fastq.gz')}")
+      dataset['Read2 [File]'] = File.join(@result_dir, "#{File.basename(@dataset['Read2'].to_s).gsub('.gz', 'clumped.gz')}")
   end
   dataset
   end
   def commands
     command = ""
     command << "clumpify.sh in=#{File.join(SushiFabric::GSTORE_DIR, @dataset['Read1'])}"
-    output_R1 = File.basename(@dataset['Read1']).gsub('fastq.gz', 'trimmed.fastq.gz')
+    output_R1 = File.basename(@dataset['Read1']).gsub('.gz', 'clumped.gz')
     command << " out=#{output_R1}"
     if @params['paired']
-      output_R2 = File.basename(@dataset['Read2']).gsub('fastq.gz', 'trimmed.fastq.gz')
+      output_R2 = File.basename(@dataset['Read2']).gsub('.gz', 'clumped.gz')
       command << " in2=#{File.join(SushiFabric::GSTORE_DIR, @dataset['Read2'])} out2=#{output_R2}"
     end
     # [options]
