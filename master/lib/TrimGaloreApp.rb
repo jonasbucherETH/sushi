@@ -43,9 +43,9 @@ Refer to <a href='https://www.bioinformatics.babraham.ac.uk/projects/trim_galore
     @params['adapter'] = ['', 'illumina', 'nextera', 'small_rna']
     @params['adapter', 'description'] = 'auto-detects adapter sequence when not specified'
     @params['mail'] = ""
-    #@modules = ["QC/TrimGalore"]
-    @modules = ["QC/trim-galore"]
-    @inherit_tags = ["Factor"]
+    #@modules = ["trim_galore/0.6.10"]
+    @modules = ["Tools/samtools"]
+    @inherit_tags = ["Factor", "B-Fabric", "Characteristic"]
   end
   def preprocess
     if @params['paired']
