@@ -30,7 +30,7 @@ Refer to <a href='https://jgi.doe.gov/data-and-tools/software-tools/bbtools/bb-t
     }
     @params['paired', 'description'] = 'either the reads are paired-ends or single-end'
     @params['mail'] = ""
-    @modules = ["Tools/bbmap/38.89"]
+    @modules = ["Dev/jdk", "Tools/bbmap/38.89"]
     @inherit_tags = ["Factor"]
   end
   def preprocess
@@ -43,21 +43,21 @@ Refer to <a href='https://jgi.doe.gov/data-and-tools/software-tools/bbtools/bb-t
   end
   def next_dataset
    dataset =  {'Name'=>@dataset['Name'],
-    'Read1 [File]' => File.join(@result_dir, "#{File.basename(@dataset['Read1'].to_s).gsub('.gz', 'clumped.gz')}"),
+    'Read1 [File]' => File.join(@result_dir, "#{File.basename(@dataset['Read1'].to_s).gsub('.gz', '.gz')}"),
     'Read Count' => 0
     }.merge(extract_columns(@inherit_tags))
   if @params['paired'] 
-      dataset['Read2 [File]'] = File.join(@result_dir, "#{File.basename(@dataset['Read2'].to_s).gsub('.gz', 'clumped.gz')}")
+      dataset['Read2 [File]'] = File.join(@result_dir, "#{File.basename(@dataset['Read2'].to_s).gsub('.gz', '.gz')}")
   end
   dataset
   end
   def commands
     command = ""
     command << "clumpify.sh in=#{File.join(SushiFabric::GSTORE_DIR, @dataset['Read1'])}"
-    output_R1 = File.basename(@dataset['Read1']).gsub('.gz', 'clumped.gz')
+    output_R1 = File.basename(@dataset['Read1']).gsub('.gz', '.gz')
     command << " out=#{output_R1}"
     if @params['paired']
-      output_R2 = File.basename(@dataset['Read2']).gsub('.gz', 'clumped.gz')
+      output_R2 = File.basename(@dataset['Read2']).gsub('.gz', '.gz')
       command << " in2=#{File.join(SushiFabric::GSTORE_DIR, @dataset['Read2'])} out2=#{output_R2}"
     end
     # [options]
