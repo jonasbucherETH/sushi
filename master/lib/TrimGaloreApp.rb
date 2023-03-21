@@ -57,11 +57,13 @@ Refer to <a href='https://www.bioinformatics.babraham.ac.uk/projects/trim_galore
   end
   def next_dataset
    dataset =  {'Name'=>@dataset['Name'],
-    'Read1 [File]' => File.join(@result_dir, "#{File.basename(@dataset['Read1'].to_s).gsub('fastq.gz','trimmed.fastq.gz')}"),
+    'Read1 [File]' => File.join(@result_dir, "#{File.basename(@dataset['Read1'].to_s).gsub('.fastq.gz','_trimmed.fq.gz')}"),
+    #'Read1 [File]' => File.join(@result_dir, "#{File.basename(@dataset['Read1'].to_s).gsub('.fastq.gz','_val_1.fq.gz')}"),
     'Read Count' => 0
     }.merge(extract_columns(@inherit_tags))
   if @params['paired'] 
-      dataset['Read2 [File]'] = File.join(@result_dir, "#{File.basename(@dataset['Read2'].to_s).gsub('fastq.gz','trimmed.fastq.gz')}")
+      dataset['Read2 [File]'] = File.join(@result_dir, "#{File.basename(@dataset['Read2'].to_s).gsub('.fastq.gz','_trimmed.fq.gz')}")
+      #dataset['Read2 [File]'] = File.join(@result_dir, "#{File.basename(@dataset['Read2'].to_s).gsub('.fastq.gz','_val_2.fq.gz')}")
   end
   dataset
   end
