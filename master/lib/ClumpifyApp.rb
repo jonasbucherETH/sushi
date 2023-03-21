@@ -16,18 +16,18 @@ Clumpify is a tool designed to rapidly group overlapping reads into clumps. This
 Refer to <a href='https://jgi.doe.gov/data-and-tools/software-tools/bbtools/bb-tools-user-guide/clumpify-guide/'>https://jgi.doe.gov/data-and-tools/software-tools/bbtools/bb-tools-user-guide/clumpify-guide/</a>
     EOS
     @required_columns = ['Name','Read1']
-    @required_params = ['paired', 'sequencing_system']
+    @required_params = ['paired', 'duplicate_distance']
     # optional params
     @params['cores'] = '8'
     @params['ram'] = '15'
     @params['scratch'] = '100'
     @params['paired'] = false
-    @params['sequencing_system'] = {
-          'NextSeq' => 40,
-          'HiSeq 1T/2500' => 40,
-          'HiSeq 3k/4k' => 2500,
-          'Novaseq'  => 12000
-    }
+    @params['duplicate_distance'] = [40, 2500, 12000]
+    @params['duplicate_distance', 'description'] = 'Max distance to consider for optical duplicates. Higher removes more duplicates but is more likely to
+                    remove PCR rather than optical duplicates.\n
+                    Recommended values (platform specific) - NextSeq, HiSeq 1T/2500: 40 | HiSeq 3k/4k: 2500 | Novaseq: 12000'
+    @params['spany'] = false
+    @params['spany', 'description'] = 'Set to true only if NextSeq was used'
     @params['paired', 'description'] = 'either the reads are paired-ends or single-end'
     @params['mail'] = ""
     @modules = ["Dev/jdk", "Tools/bbmap/38.89"]
@@ -40,6 +40,7 @@ Refer to <a href='https://jgi.doe.gov/data-and-tools/software-tools/bbtools/bb-t
   end
   def set_default_parameters
     @params['paired'] = dataset_has_column?('Read2')
+    @params['duplicate_distance'] = 2500
   end
   def next_dataset
    dataset =  {'Name'=>@dataset['Name'],
@@ -65,15 +66,15 @@ Refer to <a href='https://jgi.doe.gov/data-and-tools/software-tools/bbtools/bb-t
     command << " dedupe=t"
     command << " optical=t"
     
-    if @params['sequencing_system'] = 'NextSeq'
+    if @params['spany']
       command << " spany=t"
-      command << " adjacent=t"
+      #command << " adjacent=t"
     end
     command << " groups=16"
     #command << " reorder=t" # only if groups=1, passes=1, and ecc=f
     command << " qin=auto" # auto/33/64
     #dupe_dist = #{@params['illuminaclip']}
-    command << " dupedist=#{@params['sequencing_system']}"
+    command << " dupedist=#{@params['duplicate_distance']}"
 
     command
   end
