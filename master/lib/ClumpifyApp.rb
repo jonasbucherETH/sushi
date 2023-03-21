@@ -65,12 +65,14 @@ Refer to <a href='https://jgi.doe.gov/data-and-tools/software-tools/bbtools/bb-t
     command << " dedupe=t"
     command << " optical=t"
     
-    command << " spany=t"
-    command << " adjacent=t"
+    if @params['sequencing_system'] = 'NextSeq'
+      command << " spany=t"
+      command << " adjacent=t"
+    end
     command << " groups=16"
     #command << " reorder=t" # only if groups=1, passes=1, and ecc=f
     command << " qin=auto" # auto/33/64
-    dupe_dist = #{@params['illuminaclip']}
+    #dupe_dist = #{@params['illuminaclip']}
     command << " dupedist=#{@params['sequencing_system']}"
 
     command

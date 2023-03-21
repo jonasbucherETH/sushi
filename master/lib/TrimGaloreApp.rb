@@ -68,6 +68,8 @@ Refer to <a href='https://www.bioinformatics.babraham.ac.uk/projects/trim_galore
   
   def commands
     command = ""
+    command << ". '/usr/local/ngseq/miniconda3/etc/profile.d/conda.sh'\n"
+    command << "conda activate trim_galore\n"
     command << "trim_galore --quality #{@params['quality_threshold']} --#{@params['quality_type']} --gzip --length #{@params['min_length']}"
     # [options]
     if @params['paired']
