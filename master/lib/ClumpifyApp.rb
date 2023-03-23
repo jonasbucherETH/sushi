@@ -16,12 +16,13 @@ Clumpify is a tool designed to rapidly group overlapping reads into clumps. This
 Refer to <a href='https://jgi.doe.gov/data-and-tools/software-tools/bbtools/bb-tools-user-guide/clumpify-guide/'>https://jgi.doe.gov/data-and-tools/software-tools/bbtools/bb-tools-user-guide/clumpify-guide/</a>
     EOS
     @required_columns = ['Name','Read1']
-    @required_params = ['paired', 'duplicate_distance']
+    @required_params = ['paired', 'duplicate_distance', 'species']
     # optional params
     @params['cores'] = '8'
     @params['ram'] = '15'
     @params['scratch'] = '100'
     @params['paired'] = false
+    @params['species'] = ''
     @params['duplicate_distance'] = [40, 2500, 12000]
     @params['duplicate_distance', 'description'] = 'Max distance to consider for optical duplicates. Higher removes more duplicates but is more likely to
                     remove PCR rather than optical duplicates.\n
@@ -31,7 +32,7 @@ Refer to <a href='https://jgi.doe.gov/data-and-tools/software-tools/bbtools/bb-t
     @params['paired', 'description'] = 'either the reads are paired-ends or single-end'
     @params['mail'] = ""
     @modules = ["Dev/jdk", "Tools/bbmap/38.89"]
-    @inherit_tags = ["Factor"]
+    @inherit_tags = ["Factor", "B-Fabric", "Characteristic"]
   end
   def preprocess
     if @params['paired']
@@ -45,7 +46,8 @@ Refer to <a href='https://jgi.doe.gov/data-and-tools/software-tools/bbtools/bb-t
   def next_dataset
    dataset =  {'Name'=>@dataset['Name'],
     'Read1 [File]' => File.join(@result_dir, "#{File.basename(@dataset['Read1'].to_s).gsub('.gz', '.gz')}"),
-    'Read Count' => 0
+    'Read Count' => @dataset['Read Count'],
+    'Species' => @params['species']
     }.merge(extract_columns(@inherit_tags))
   if @params['paired'] 
       dataset['Read2 [File]'] = File.join(@result_dir, "#{File.basename(@dataset['Read2'].to_s).gsub('.gz', '.gz')}")
