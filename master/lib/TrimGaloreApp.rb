@@ -65,7 +65,7 @@ Refer to <a href='https://www.bioinformatics.babraham.ac.uk/projects/trim_galore
   else
     dataset =  {'Name'=>@dataset['Name'],
       'Read1 [File]' => File.join(@result_dir, "#{File.basename(@dataset['Read1'].to_s).gsub('.fastq.gz','_trimmed.fq.gz')}"),
-      'Read Count' => @dataset['Read Count'],
+      'Read Count' => @dataset['Read Count']
     }.merge(extract_columns(@inherit_tags))
   end
   dataset
