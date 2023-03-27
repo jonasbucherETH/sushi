@@ -18,7 +18,7 @@ Refer to <a href='https://www.bioinformatics.babraham.ac.uk/projects/trim_galore
     @required_columns = ['Name','Read1']
     @required_params = ['paired']
     # optional params
-    #@params['cores'] = '8'
+    @params['cores'] = '1'
     @params['ram'] = '15'
     @params['scratch'] = '100'
     @params['paired'] = false

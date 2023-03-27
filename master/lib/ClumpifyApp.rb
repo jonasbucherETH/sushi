@@ -32,7 +32,7 @@ Refer to <a href='https://jgi.doe.gov/data-and-tools/software-tools/bbtools/bb-t
     @params['paired', 'description'] = 'either the reads are paired-ends or single-end'
     @params['mail'] = ""
     @modules = ["Dev/jdk", "Tools/bbmap/38.89"]
-    @inherit_tags = ["Factor", "B-Fabric", "Characteristic"]
+    @inherit_tags = ["Factor", "B-Fabric"]
   end
   def preprocess
     if @params['paired']
