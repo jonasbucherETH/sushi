@@ -60,7 +60,7 @@ Refer to <a href='https://www.bioinformatics.babraham.ac.uk/projects/trim_galore
     dataset =  {'Name'=>@dataset['Name'],
       'Read1 [File]' => File.join(@result_dir, "#{File.basename(@dataset['Read1'].to_s).gsub('.fastq.gz','_val_1.fq.gz')}"),
       'Read Count' => @dataset['Read Count'],
-      'Read2 [File]' = File.join(@result_dir, "#{File.basename(@dataset['Read2'].to_s).gsub('.fastq.gz','_val_2.fq.gz')}")
+      'Read2 [File]' => File.join(@result_dir, "#{File.basename(@dataset['Read2'].to_s).gsub('.fastq.gz','_val_2.fq.gz')}")
     }.merge(extract_columns(@inherit_tags))
   else
     dataset =  {'Name'=>@dataset['Name'],
