@@ -5,10 +5,10 @@ require 'sushi_fabric'
 require_relative 'global_variables'
 include GlobalVariables
 
-class dmrseqApp <  SushiFabric::SushiApp
+class DMRseqApp <  SushiFabric::SushiApp
   def initialize
     super
-    @name = 'dmrseq'
+    @name = 'DMRseq'
     @params['process_mode'] = 'DATASET'
     @analysis_category = 'Stats'
     @description =<<-EOS
