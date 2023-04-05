@@ -14,7 +14,7 @@ class DMRseqApp <  SushiFabric::SushiApp
     @description =<<-EOS
 Differentially methylated region analysis. <br/>
     EOS
-    @required_columns = ['Name','COV [File]'] # 'Species'
+    @required_columns = ['Name','COV'] # 'Species'
     @required_params = ['name', 'testCovariate']
     # potential params: cutoff, testCovariate -> Factor (?)
     @params['cores'] = '1'
@@ -35,7 +35,7 @@ Differentially methylated region analysis. <br/>
     report_file = File.join(@result_dir, @params['name'])
     report_link = File.join(report_file, '00index.html')
     {'Name'=>@params['name'],
-     'Species'=>@dataset['Species'],
+     #'Species'=>@dataset['Species'],
      'refBuild'=>@params['refBuild'],
      'refFeatureFile'=>@params['refFeatureFile'],
      'Report [File]'=>report_file,
