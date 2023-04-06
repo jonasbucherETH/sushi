@@ -15,17 +15,48 @@ class DMRseqApp <  SushiFabric::SushiApp
 Differentially methylated region analysis. <br/>
     EOS
     @required_columns = ['Name','COV'] # 'Species'
-    @required_params = ['name', 'testCovariate']
-    # potential params: cutoff, testCovariate -> Factor (?)
+    @required_params = ['name', 'testCovariate', 'cutoff']
     @params['cores'] = '1'
     @params['ram'] = '50'
     @params['scratch'] = '100'
     @params['refBuild'] = ref_selector
     @params['refFeatureFile'] = 'genes.gtf'
+    @params['testCovariate'] = ''
+    @params['testCovariate', 'description'] = 'Specify the column name of your co-variate to 
+    split the samples into groups for testing. Make sure the
+    column name is in the format "NAME [Factor]" or "NAME [Numeric]"'
+    @params['adjustCovariate'] = ''
+    @params['adjustCovariate', 'description'] = 'Specify the column name of your co-variate to 
+    adjust for when testing for testCovariate. Make sure the
+    column name is in the format "NAME [Factor]" or "NAME [Numeric]"'
+    @params['matchCovariate'] = ''
+    @params['matchCovariate', 'description'] = 'Specify the column name of your co-variate to 
+    block for when constructing permutations for testing. Make sure the
+    column name is in the format "NAME [Factor]" or "NAME [Numeric]"'
     @params['cutoff'] = '0.1'
-    @params['cutoff', 'description'] = 'value that represents the absolute value
-    (or a vector of two numbers representing a lower and upper bound) for the
-    cutoff of the single CpG coefficient that is used to discover candidate regions'
+    @params['cutoff', 'description'] = 'value cutoff of the single CpG coefficient that is used to discover candidate regions'
+    @params['minNumRegion'] = '5'
+    @params['minNumRegion', 'description'] = 'place holder'
+    @params['smooth'] = true
+    @params['smooth', 'description'] = 'place holder'
+    @params['bpSpan'] = '1000'
+    @params['bpSpan', 'description'] = 'place holder'
+    @params['minInSpan'] = '30'
+    @params['minInSpan', 'description'] = 'place holder'
+    @params['maxGapSmooth'] = '5000'
+    @params['maxGapSmooth', 'description'] = 'place holder'
+    @params['maxGap'] = '1000'
+    @params['maxGap', 'description'] = 'place holder'
+    @params['maxPerms'] = '10'
+    @params['maxPerms', 'description'] = 'place holder'
+    @params['stat'] = ['stat', 'L', 'area', 'beta', 'avg']
+    @params['stat', 'description'] = 'place holder'
+    @params['block'] = false
+    @params['block', 'description'] = 'place holder'
+    @params['blockSize'] = '5000'
+    @params['blockSize', 'description'] = 'place holder'
+    @params['chrsPerChunk'] = '1'
+    @params['chrsPerChunk', 'description'] = 'place holder'
     @params['name'] = 'dmrseq'
     @params['mail'] = ""
     @modules = ["Dev/R"]
@@ -45,7 +76,7 @@ Differentially methylated region analysis. <br/>
     }.merge(extract_columns(@inherit_tags))
   end
   def commands
-    run_RApp("EzAppdmrseq", lib_path:  "/srv/GT/analysis/jonas/R_LIBS")
+    run_RApp("EzAppDMRseq", lib_path: "/srv/GT/analysis/jonas/R_LIBS")
     #command = "vcf-stats #{File.join("$GSTORE_DIR", @dataset[0]['Filtered VCF [File]'])} -p #{@params['name']}/vcf_stats"
   end
 end
