@@ -34,7 +34,7 @@ DNA methylation analysis<br/>
     }.merge(extract_columns(@inherit_tags))
   end
   def commands
-    run_RApp("EzAppDNAme", lib_path:  "/srv/GT/analysis/jonas/R_LIBS")
+    run_RApp("EzAppDNAme", lib_path: "/srv/GT/analysis/jonas/R_LIBS")
     #command = "vcf-stats #{File.join("$GSTORE_DIR", @dataset[0]['Filtered VCF [File]'])} -p #{@params['name']}/vcf_stats"
   end
 end
