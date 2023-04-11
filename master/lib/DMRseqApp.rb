@@ -15,7 +15,7 @@ class DMRseqApp <  SushiFabric::SushiApp
 Differentially methylated region analysis. <br/>
     EOS
     @required_columns = ['Name','COV'] # 'Species'
-    @required_params = ['name', 'testCovariate', 'cutoff']
+    @required_params = ['name', 'testCovariate']
     @params['cores'] = '1'
     @params['ram'] = '50'
     @params['scratch'] = '100'
