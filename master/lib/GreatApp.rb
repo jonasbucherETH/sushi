@@ -15,29 +15,33 @@ class GreatApp <  SushiFabric::SushiApp
 Differentially methylated region analysis. <br/>
     EOS
     @required_columns = ['Name','COV'] # 'Species'
-    @required_params = ['name', 'testCovariate', 'gene_set']
-    @params['cores'] = '1'
-    @params['ram'] = '50'
-    @params['scratch'] = '100'
+    @required_params = ['name', 'testCovariate', 'biomart_dataset', 'txdb_dataset']
+    #@params['cores'] = '1'
+    #@params['ram'] = '50'
+    #@params['scratch'] = '100'
     @params['biomart_dataset'] = ''
-    @params['biomart_dataset', 'description'] = 'Search and copy the desired dataset name into this filed from here:
+    @params['biomart_dataset', 'description'] = 'Search and copy the desired dataset name into this field from here:
       https://jokergoo.github.io/BioMartGOGeneSets/articles/supported_organisms.html'
-    @params['gene_sets'] = ['BP', 'CC', 'MF']
-    @params['gene_sets', 'description'] = 'BO: Biological Process, CC: Cellular Component, MP: Molecular Function'
-    @params['reactome_kegg'] = true
-    @params['reactome_kegg', 'description'] = 'Include Reactome and KEGG pathways of A. thaliana'
-    @params['min_gene_set_size'] = 5
-    @params['min_gene_set_size', 'description'] = 'Minimal size of gene sets'
-    @params['mode'] = ['basalPlusExt', 'twoClosest', 'oneClosest']
-    @params['mode', 'description'] = 'The mode to extend genes.'
-    @params['basal_upstream'] = 5000
-    @params['basal_upstream', 'description'] = "In 'basalPlusExt' mode, number of base pairs extending to the upstream of TSS"
-    @params['basal_downstream'] = 1000
-    @params['basal_downstream', 'description'] = "In 'basalPlusExt' mode, number of base pairs extending to the downstream of TSS"
-    @params['extension'] = 1000000
-    @params['extension', 'description'] = 'Extensions from the basal domains'
-    @params['exclude'] = 'gap'
-    @params['exclude', 'description'] = 'Regions that are excluded from analysis such as gap regions'
+    @params['txdb_dataset'] = ''
+    @params['txdb_dataset', 'description'] = 'Search and copy the desired dataset name into this field from here:
+      https://jokergoo.github.io/BioMartGOGeneSets/articles/supported_organisms.html'
+      txdb_dataset
+    #@params['gene_sets'] = ['BP', 'CC', 'MF']
+    #@params['gene_sets', 'description'] = 'BO: Biological Process, CC: Cellular Component, MF: Molecular Function'
+    #@params['reactome_kegg'] = true
+    #@params['reactome_kegg', 'description'] = 'Include Reactome and KEGG pathways of A. thaliana'
+    #@params['min_gene_set_size'] = 5
+    #@params['min_gene_set_size', 'description'] = 'Minimal size of gene sets'
+    #@params['mode'] = ['basalPlusExt', 'twoClosest', 'oneClosest']
+    #@params['mode', 'description'] = 'The mode to extend genes.'
+    #@params['basal_upstream'] = 5000
+    #@params['basal_upstream', 'description'] = "In 'basalPlusExt' mode, number of base pairs extending to the upstream of TSS"
+    #@params['basal_downstream'] = 1000
+    #@params['basal_downstream', 'description'] = "In 'basalPlusExt' mode, number of base pairs extending to the downstream of TSS"
+    #@params['extension'] = 1000000
+    #@params['extension', 'description'] = 'Extensions from the basal domains'
+    #@params['exclude'] = 'gap'
+    #@params['exclude', 'description'] = 'Regions that are excluded from analysis such as gap regions'
     @params['refBuild'] = ref_selector
     @params['refFeatureFile'] = 'genes.gtf'
     @params['name'] = 'great'
