@@ -14,7 +14,7 @@ class GreatApp <  SushiFabric::SushiApp
     @description =<<-EOS
 Differentially methylated region analysis. <br/>
     EOS
-    @required_columns = ['Name','COV'] # 'Species'
+    @required_columns = ['Name'] # 'Species'
     @required_params = ['name', 'testCovariate', 'biomart_dataset', 'txdb_dataset']
     #@params['cores'] = '1'
     #@params['ram'] = '50'
