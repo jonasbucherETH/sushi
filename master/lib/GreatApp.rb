@@ -16,9 +16,9 @@ Differentially methylated region analysis. <br/>
     EOS
     @required_columns = ['Name'] # 'Species'
     @required_params = ['name', 'biomart_dataset', 'txdb_dataset']
-    #@params['cores'] = '1'
-    #@params['ram'] = '50'
-    #@params['scratch'] = '100'
+    @params['cores'] = '1'
+    @params['ram'] = '50'
+    @params['scratch'] = '100'
     @params['biomart_dataset'] = ''
     @params['biomart_dataset', 'description'] = 'Search and copy the desired dataset name into this field from here:
       https://jokergoo.github.io/BioMartGOGeneSets/articles/supported_organisms.html'
