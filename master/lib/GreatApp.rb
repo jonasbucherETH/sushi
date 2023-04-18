@@ -22,8 +22,8 @@ Differentially methylated region analysis. <br/>
     @params['biomart_dataset'] = ''
     @params['biomart_dataset', 'description'] = 'Search and copy the desired dataset name into this field from here:
       https://jokergoo.github.io/BioMartGOGeneSets/articles/supported_organisms.html'
-    @params['txdb_dataset'] = ''
-    @params['txdb_dataset', 'description'] = 'Search and copy the desired dataset name into this field from here:'
+    @params['species'] = ''
+    @params['species', 'description'] = 'species name'
       
     #@params['gene_sets'] = ['BP', 'CC', 'MF']
     #@params['gene_sets', 'description'] = 'BO: Biological Process, CC: Cellular Component, MF: Molecular Function'
