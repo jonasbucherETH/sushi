@@ -15,7 +15,7 @@ class GreatApp <  SushiFabric::SushiApp
 Differentially methylated region analysis. <br/>
     EOS
     @required_columns = ['Name'] # 'Species'
-    @required_params = ['name', 'biomart_dataset', 'species']
+    @required_params = ['name', 'biomart_selection', 'species']
     @params['cores'] = '1'
     @params['ram'] = '50'
     @params['scratch'] = '100'
@@ -56,7 +56,7 @@ Differentially methylated region analysis. <br/>
       #'Species'=>@dataset['Species'],
       'refBuild'=>@params['refBuild'],
       'refFeatureFile'=>@params['refFeatureFile'],
-      'Selected_biomart'=>@params['biomart_selection'],
+      #'Selected_biomart'=>@params['biomart_selection'],
       'Report [File]'=>report_file,
       'Static Report [Link]'=>report_link,
       #'Interactive report [Link]'=>"https://fgcz-shiny.uzh.ch/PopGen_Structure?data=#{report_file}",
