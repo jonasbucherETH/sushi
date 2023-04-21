@@ -75,8 +75,8 @@ module GlobalVariables
   def biomart_selector(cache_name='biomart_selector')
     require 'csv'
     selector = {'select'=>''}
-    selector = if File.exist?("path/to/biomartTable")
-      biomart_data = CSV.read("path/to/biomartTable", headers: true)
+    selector = if File.exist?("/srv/GT/analysis/jonas/jonas_test_sushi_20221115/master/selector_tests/biomart.csv")
+      biomart_data = CSV.read("/srv/GT/analysis/jonas/jonas_test_sushi_20221115/master/selector_tests/biomart.csv", headers: true)
       datasets = biomart_data['dataset'].uniq.sort
   
       dataset_options = datasets.map {|dataset| [dataset, dataset]}
