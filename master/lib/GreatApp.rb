@@ -22,6 +22,7 @@ Differentially methylated region analysis. <br/>
     @params['biomart_dataset'] = ''
     @params['biomart_dataset', 'description'] = 'Search and copy the desired dataset name into this field from here:
       https://jokergoo.github.io/BioMartGOGeneSets/articles/supported_organisms.html'
+    @params['biomart_selection'] = biomart_selector
     @params['species'] = ''
     @params['species', 'description'] = 'species name'
       
@@ -55,6 +56,7 @@ Differentially methylated region analysis. <br/>
       #'Species'=>@dataset['Species'],
       'refBuild'=>@params['refBuild'],
       'refFeatureFile'=>@params['refFeatureFile'],
+      'Selected_biomart'=>@params['biomart_selection'],
       'Report [File]'=>report_file,
       'Static Report [Link]'=>report_link,
       #'Interactive report [Link]'=>"https://fgcz-shiny.uzh.ch/PopGen_Structure?data=#{report_file}",

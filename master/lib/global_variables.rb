@@ -71,6 +71,27 @@ module GlobalVariables
     end
     selector
   end
+  ##### selector for rGREAT
+  def biomart_selector(cache_name='biomart_selector')
+    require 'csv'
+    selector = {'select'=>''}
+    selector = if File.exist?("path/to/biomartTable")
+      biomart_data = CSV.read("path/to/biomartTable", headers: true)
+      datasets = biomart_data['dataset'].uniq.sort
+  
+      dataset_options = datasets.map {|dataset| [dataset, dataset]}
+  
+      selector['select'] = dataset_options
+      selector
+    else
+      {} # empty hash if file doesn't exist
+    end
+  
+    # you might want to use a different caching mechanism instead of Rails.cache
+    Rails.cache.write(cache_name, selector, expired_in: 1.hour)
+    selector
+  end
+  ##### 
   def extract_column(type)
     factors = get_columns_with_tag(type)
     dataset = {}
