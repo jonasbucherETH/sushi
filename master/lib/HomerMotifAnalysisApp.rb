@@ -15,7 +15,8 @@ class HomerMotifAnalysisApp <  SushiFabric::SushiApp
 HOMER <br/>
     EOS
     @required_columns = ['Name','BAM']
-    @required_params = ['grouping', 'sampleGroup', 'refGroup']
+    #@required_params = ['grouping', 'sampleGroup', 'refGroup']
+    @required_params = ['name']
     @params['cores'] = '4'
     @params['ram'] = '15'
     @params['scratch'] = '100'
