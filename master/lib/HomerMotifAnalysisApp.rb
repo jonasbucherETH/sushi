@@ -37,11 +37,13 @@ HOMER <br/>
     @modules = ["Dev/R", "Tools/HOMER", "Tools/BEDTools"]
   end
   def next_dataset
-    @comparison = "#{@params['sampleGroup']}--over--#{@params['refGroup']}"
-    @params['comparison'] = @comparison
-    @params['name'] = @comparison
-    report_file = File.join(@result_dir, "#{@params['comparison']}")
-    diffPeak_link = File.join(report_file, 'diffPeaks.txt')
+    #@comparison = "#{@params['sampleGroup']}--over--#{@params['refGroup']}"
+    #@params['comparison'] = @comparison
+    #@params['name'] = @comparison
+    #report_file = File.join(@result_dir, "#{@params['comparison']}")
+    #diffPeak_link = File.join(report_file, 'diffPeaks.txt')
+    report_file = File.join(@result_dir, @params['name'])
+    report_link = File.join(report_file, '00index.html')
     {'Name'=>@params['name'],
       'Report [File]'=>report_file,
       'Static Report [Link]'=>report_link,
