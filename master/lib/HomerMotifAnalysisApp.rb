@@ -27,7 +27,7 @@ HOMER <br/>
     @params['refGroup', 'description'] = 'refGroup should be different from sampleGroup'
     #@params['refBuildHOMER'] = ['hg38', 'mm10']
     #@params['refBuildHOMER', 'description'] = 'The current supported genomes from HOMER. More is available.'
-    @params['refBuildHOMER'] = ref_selector
+    #@params['refBuildHOMER'] = ref_selector
     #@params['refBuildHOMER', 'description'] = 'The current supported genomes from HOMER. More is available.'
     @params['style'] = ['histone', 'factor', 'tss', 'groseq', 'dnase', 'super', 'mC']
     @params['style', 'description'] = 'Style of peaks found by findPeaks during features selection'
@@ -47,7 +47,7 @@ HOMER <br/>
     {'Name'=>@params['name'],
       'Report [File]'=>report_file,
       'Static Report [Link]'=>report_link
-    }
+    }.merge(extract_columns(@inherit_tags))
   end
   def commands
     run_RApp("EzAppHomerMotifAnalysis", lib_path: "/srv/GT/analysis/jonas/R_LIBS")
