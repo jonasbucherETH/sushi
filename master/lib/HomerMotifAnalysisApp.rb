@@ -10,7 +10,7 @@ class HomerMotifAnalysisApp <  SushiFabric::SushiApp
     super
     @name = 'HomerMotifAnalysis'
     @params['process_mode'] = 'DATASET'
-    @analysis_category = 'ATAC'
+    @analysis_category = 'Stats'
     @description =<<-EOS
 HOMER <br/>
     EOS
@@ -30,8 +30,8 @@ HOMER <br/>
     #@params['refBuildHOMER', 'description'] = 'The current supported genomes from HOMER. More is available.'
     #@params['refBuildHOMER'] = ref_selector
     #@params['refBuildHOMER', 'description'] = 'The current supported genomes from HOMER. More is available.'
-    @params['style'] = ['histone', 'factor', 'tss', 'groseq', 'dnase', 'super', 'mC']
-    @params['style', 'description'] = 'Style of peaks found by findPeaks during features selection'
+    #@params['style'] = ['histone', 'factor', 'tss', 'groseq', 'dnase', 'super', 'mC']
+    #@params['style', 'description'] = 'Style of peaks found by findPeaks during features selection'
     @params['cmdOptions'] = ''
     @params['cmdOptions', 'description'] = 'to define batches in the analysis to perform paired test, e.g. -batch 1 2 1 2'
     @params['name'] = 'homer_result'
