@@ -28,6 +28,7 @@ EOS
     @params['name'] = 'homer'
     @params['mail'] = ""
     @modules = ["Dev/R", "Tools/HOMER", "Tools/BEDTools"]
+    @inherit_tags = ["Factor", "B-Fabric", "Characteristic"]
   end
   def next_dataset
     report_file = File.join(@result_dir, @params['name'])
