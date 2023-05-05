@@ -34,6 +34,7 @@ HOMER <br/>
     @params['style', 'description'] = 'Style of peaks found by findPeaks during features selection'
     @params['cmdOptions'] = ''
     @params['cmdOptions', 'description'] = 'to define batches in the analysis to perform paired test, e.g. -batch 1 2 1 2'
+    @params['name'] = 'homer_result'
     @params['mail'] = ""
     @modules = ["Dev/R", "Tools/HOMER", "Tools/BEDTools"]
   end
