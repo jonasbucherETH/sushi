@@ -35,7 +35,7 @@ EOS
     report_link = File.join(report_file, '00index.html')
     {'Name'=>@params['name'],
       'Report [File]'=>report_file,
-      'Static Report [Link]'=>report_link
+      'Static Report [Link]'=>report_link,
     }.merge(extract_columns(@inherit_tags))
   end
   def commands
@@ -43,6 +43,4 @@ EOS
   end
 end
 
-if __FILE__ == $0
-  
-end
+
