@@ -12,11 +12,10 @@ class HomerMotifAnalysisApp <  SushiFabric::SushiApp
     @params['process_mode'] = 'DATASET'
     @analysis_category = 'Stats'
     @description =<<-EOS
-HOMER <br/>
-    EOS
+    HOMER Motif Analysis
+EOS
     @required_columns = ['Name','BAM']
-    #@required_params = ['grouping', 'sampleGroup', 'refGroup']
-    @required_params = ['name']
+    @required_params = ['name','paired']
     @params['cores'] = '4'
     @params['ram'] = '15'
     @params['scratch'] = '100'
@@ -26,24 +25,11 @@ HOMER <br/>
     @params['sampleGroup', 'description'] = 'sampleGroup should be different from refGroup'
     @params['refGroup'] = ''
     @params['refGroup', 'description'] = 'refGroup should be different from sampleGroup'
-    #@params['refBuildHOMER'] = ['hg38', 'mm10']
-    #@params['refBuildHOMER', 'description'] = 'The current supported genomes from HOMER. More is available.'
-    #@params['refBuildHOMER'] = ref_selector
-    #@params['refBuildHOMER', 'description'] = 'The current supported genomes from HOMER. More is available.'
-    #@params['style'] = ['histone', 'factor', 'tss', 'groseq', 'dnase', 'super', 'mC']
-    #@params['style', 'description'] = 'Style of peaks found by findPeaks during features selection'
-    @params['cmdOptions'] = ''
-    @params['cmdOptions', 'description'] = 'to define batches in the analysis to perform paired test, e.g. -batch 1 2 1 2'
-    @params['name'] = 'homer_result'
+    @params['name'] = 'homer'
     @params['mail'] = ""
     @modules = ["Dev/R", "Tools/HOMER", "Tools/BEDTools"]
   end
   def next_dataset
-    #@comparison = "#{@params['sampleGroup']}--over--#{@params['refGroup']}"
-    #@params['comparison'] = @comparison
-    #@params['name'] = @comparison
-    #report_file = File.join(@result_dir, "#{@params['comparison']}")
-    #diffPeak_link = File.join(report_file, 'diffPeaks.txt')
     report_file = File.join(@result_dir, @params['name'])
     report_link = File.join(report_file, '00index.html')
     {'Name'=>@params['name'],
