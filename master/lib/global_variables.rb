@@ -81,8 +81,8 @@ module GlobalVariables
   
       dataset_options = datasets.map {|dataset| [dataset, dataset]}
   
-      selector['select'] = dataset_options
-      selector
+      #selector['select'] = dataset_options
+      #selector
     else
       {} # empty hash if file doesn't exist
     end
