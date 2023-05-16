@@ -89,7 +89,7 @@ module GlobalVariables
   
     # you might want to use a different caching mechanism instead of Rails.cache
     Rails.cache.write(cache_name, selector, expired_in: 1.hour)
-    selector
+    selector.to_h
   end
   ##### 
   def extract_column(type)
