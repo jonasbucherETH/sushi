@@ -23,12 +23,15 @@ Refer to <a href='https://jgi.doe.gov/data-and-tools/software-tools/bbtools/bb-t
     @params['scratch'] = '100'
     @params['paired'] = false
     @params['species'] = ''
-    @params['duplicate_distance'] = [40, 2500, 12000]
-    @params['duplicate_distance', 'description'] = 'Max distance to consider for optical duplicates. Higher removes more duplicates but is more likely to
-                    remove PCR rather than optical duplicates.\n
-                    Recommended values (platform specific) - NextSeq, HiSeq 1T/2500: 40 | HiSeq 3k/4k: 2500 | Novaseq: 12000'
-    @params['spany'] = false
-    @params['spany', 'description'] = 'Set to true only if NextSeq was used'
+    #@params['duplicate_distance'] = [40, 2500, 12000]
+    #@params['duplicate_distance', 'description'] = 'Max distance to consider for optical duplicates. Higher removes more duplicates but is more likely to
+    #                remove PCR rather than optical duplicates.\n
+    #                Recommended values (platform specific) - NextSeq, HiSeq 1T/2500: 40 | HiSeq 3k/4k: 2500 | Novaseq: 12000'
+    #@params['spany'] = false
+    #@params['spany', 'description'] = 'Set to true only if NextSeq was used'
+    
+    @params['sequencing_platform'] = ['HiSeq 1T', 'HiSeq 2500', 'HiSeq 3k', 'HiSeq 4k', 'Novaseq', 'MiSeq', 'NextSeq', 'Other']
+    
     @params['paired', 'description'] = 'either the reads are paired-ends or single-end'
     @params['mail'] = ""
     @modules = ["Dev/jdk", "Tools/bbmap/38.89"]
@@ -68,15 +71,31 @@ Refer to <a href='https://jgi.doe.gov/data-and-tools/software-tools/bbtools/bb-t
     command << " dedupe=t"
     command << " optical=t"
     
-    if @params['spany']
-      command << " spany=t"
-      #command << " adjacent=t"
-    end
     command << " groups=auto"
     #command << " reorder=t" # only if groups=1, passes=1, and ecc=f
     command << " qin=auto" # auto/33/64
     #dupe_dist = #{@params['illuminaclip']}
-    command << " dupedist=#{@params['duplicate_distance']}"
+
+    if @params['sequencing_platform'] == 'NextSeq'
+      command << " spany=t adjacent=t"
+      #command << " adjacent=t"
+    end
+    
+    if @params['sequencing_platform'] == 'NextSeq' or @params['sequencing_platform'] == 'HiSeq 1T' or @params['sequencing_platform'] == 'HiSeq 2500' or @params['sequencing_platform'] == 'Other'
+      command << " dupedist=40"
+      #command << " adjacent=t"
+    end
+    
+    if @params['sequencing_platform'] == 'HiSeq 3k' or @params['sequencing_platform'] == 'HiSeq 4k'
+      command << " dupedist=2500"
+      #command << " adjacent=t"
+    end
+    
+    if @params['sequencing_platform'] == 'Novaseq'
+      command << " dupedist=12000"
+      #command << " adjacent=t"
+    end
+    #command << " dupedist=#{@params['duplicate_distance']}"
 
     command
   end
