@@ -16,13 +16,13 @@ Clumpify is a tool designed to rapidly group overlapping reads into clumps. This
 Refer to <a href='https://jgi.doe.gov/data-and-tools/software-tools/bbtools/bb-tools-user-guide/clumpify-guide/'>https://jgi.doe.gov/data-and-tools/software-tools/bbtools/bb-tools-user-guide/clumpify-guide/</a>
     EOS
     @required_columns = ['Name','Read1']
-    @required_params = ['paired', 'duplicate_distance', 'species']
+    @required_params = ['paired', 'sequencing_platform']
     # optional params
     @params['cores'] = '8'
     @params['ram'] = '15'
     @params['scratch'] = '100'
     @params['paired'] = false
-    @params['species'] = ''
+    #@params['species'] = ''
     #@params['duplicate_distance'] = [40, 2500, 12000]
     #@params['duplicate_distance', 'description'] = 'Max distance to consider for optical duplicates. Higher removes more duplicates but is more likely to
     #                remove PCR rather than optical duplicates.\n
@@ -30,7 +30,7 @@ Refer to <a href='https://jgi.doe.gov/data-and-tools/software-tools/bbtools/bb-t
     #@params['spany'] = false
     #@params['spany', 'description'] = 'Set to true only if NextSeq was used'
     
-    @params['sequencing_platform'] = ['HiSeq 1T', 'HiSeq 2500', 'HiSeq 3k', 'HiSeq 4k', 'Novaseq', 'MiSeq', 'NextSeq', 'Other']
+    @params['sequencing_platform'] = ['HiSeq 1T', 'HiSeq 2500', 'HiSeq 3k', 'HiSeq 4k', 'Novaseq', 'NextSeq', 'Other']
     
     @params['paired', 'description'] = 'either the reads are paired-ends or single-end'
     @params['mail'] = ""
@@ -44,13 +44,13 @@ Refer to <a href='https://jgi.doe.gov/data-and-tools/software-tools/bbtools/bb-t
   end
   def set_default_parameters
     @params['paired'] = dataset_has_column?('Read2')
-    @params['duplicate_distance'] = 2500
+    #@params['duplicate_distance'] = 2500
   end
   def next_dataset
    dataset =  {'Name'=>@dataset['Name'],
     'Read1 [File]' => File.join(@result_dir, "#{File.basename(@dataset['Read1'].to_s).gsub('.gz', '.gz')}"),
     'Read Count' => @dataset['Read Count'],
-    'Species' => @params['species']
+    #'Species' => @params['species']
     }.merge(extract_columns(@inherit_tags))
   if @params['paired'] 
       dataset['Read2 [File]'] = File.join(@result_dir, "#{File.basename(@dataset['Read2'].to_s).gsub('.gz', '.gz')}")
