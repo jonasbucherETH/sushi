@@ -53,8 +53,22 @@ Refer to <a href='https://jgi.doe.gov/data-and-tools/software-tools/bbtools/bb-t
     #'Species' => @params['species']
     }.merge(extract_columns(@inherit_tags))
   if @params['paired'] 
-      dataset['Read2 [File]'] = File.join(@result_dir, "#{File.basename(@dataset['Read2'].to_s).gsub('.gz', '.gz')}")
+    dataset =  {'Name'=>@dataset['Name'],
+    'Read1 [File]' => File.join(@result_dir, "#{File.basename(@dataset['Read1'].to_s).gsub('_val_1.fq.gz', 'fq.gz')}"),
+    'Read Count' => @dataset['Read Count'],
+    'Read2 [File]' => File.join(@result_dir, "#{File.basename(@dataset['Read2'].to_s).gsub('_val_2.fq.gz', 'fq.gz')}")
+    #'Species' => @params['species']
+    }.merge(extract_columns(@inherit_tags))
   end
+  #dataset['Read2 [File]'] = File.join(@result_dir, "#{File.basename(@dataset['Read2'].to_s).gsub('_val_2.fq.gz', '.gz')}")
+  else
+    dataset =  {'Name'=>@dataset['Name'],
+    'Read1 [File]' => File.join(@result_dir, "#{File.basename(@dataset['Read1'].to_s).gsub('_trimmed.fq.gz', 'fq.gz')}"),
+    'Read Count' => @dataset['Read Count']
+    #'Species' => @params['species']
+    }.merge(extract_columns(@inherit_tags))
+  end
+  _val_1.fq.gz
   dataset
   end
   def commands
