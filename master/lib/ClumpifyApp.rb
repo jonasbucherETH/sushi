@@ -68,11 +68,15 @@ Refer to <a href='https://jgi.doe.gov/data-and-tools/software-tools/bbtools/bb-t
   def commands
     command = ""
     command << "clumpify.sh in=#{File.join(SushiFabric::GSTORE_DIR, @dataset['Read1'])}"
-    output_R1 = File.basename(@dataset['Read1']).gsub('.gz', '.gz')
-    command << " out=#{output_R1}"
     if @params['paired']
-      output_R2 = File.basename(@dataset['Read2']).gsub('.gz', '.gz')
+      output_R1 = File.basename(@dataset['Read1']).gsub('_val_1.fq.gz', '.gz')
+      output_R2 = File.basename(@dataset['Read2']).gsub('_val_2.fq.gz', '.gz')
+      command << " out=#{output_R1}"
       command << " in2=#{File.join(SushiFabric::GSTORE_DIR, @dataset['Read2'])} out2=#{output_R2}"
+    end
+    else
+      output_R1 = File.basename(@dataset['Read1']).gsub('_trimmed.fq.gz', '.gz')
+      command << " out=#{output_R1}"
     end
     # [options]
     
