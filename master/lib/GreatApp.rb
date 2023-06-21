@@ -49,6 +49,9 @@ Differentially methylated region analysis. <br/>
     @modules = ["Dev/R"]
     @inherit_tags = ["Factor", "B-Fabric", "Characteristic"]
   end
+  #def preprocess
+  #  @params['biomart_chosen'] = @params['biomart_selection']
+  #end
   def next_dataset
     report_file = File.join(@result_dir, @params['name'])
     report_link = File.join(report_file, '00index.html')

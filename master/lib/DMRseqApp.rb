@@ -33,6 +33,7 @@ Differentially methylated region analysis. <br/>
     @params['matchCovariate', 'description'] = 'Specify the column name of your co-variate to 
     block for when constructing permutations for testing. Make sure the
     column name is in the format "NAME [Factor]" or "NAME [Numeric]"'
+=begin
     @params['cutoff'] = 0.1
     @params['cutoff', 'description'] = 'value cutoff of the single CpG coefficient that is used to discover candidate regions'
     @params['minNumRegion'] = 5
@@ -57,6 +58,7 @@ Differentially methylated region analysis. <br/>
     @params['blockSize', 'description'] = 'place holder'
     @params['chrsPerChunk'] = 1
     @params['chrsPerChunk', 'description'] = 'place holder'
+=end
     @params['name'] = 'dmrseq'
     @params['mail'] = ""
     @modules = ["Dev/R"]

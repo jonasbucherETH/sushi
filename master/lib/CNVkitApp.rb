@@ -5,10 +5,10 @@ require 'sushi_fabric'
 require_relative 'global_variables'
 include GlobalVariables
 
-class HomerMotifAnalysisApp <  SushiFabric::SushiApp
+class CNVkitApp <  SushiFabric::SushiApp
   def initialize
     super
-    @name = 'HomerMotifAnalysis'
+    @name = 'CNVkit'
     @params['process_mode'] = 'DATASET'
     @analysis_category = 'Stats'
     @description =<<-EOS
@@ -25,10 +25,10 @@ EOS
     @params['sampleGroup', 'description'] = 'sampleGroup should be different from refGroup'
     @params['refGroup'] = ''
     @params['refGroup', 'description'] = 'refGroup should be different from sampleGroup'
-    @params['name'] = 'homer'
+    @params['refBuild'] = ref_selector
+    @params['name'] = 'CNVkit'
     @params['mail'] = ""
     @modules = ["Dev/R", "Tools/HOMER", "Tools/BEDTools"]
-    #@modules = ["Dev/R", "/srv/GT/analysis/jonas/tools/HOMER", "Tools/BEDTools"]
     #@inherit_tags = ["Factor", "B-Fabric", "Characteristic"]
   end
   def next_dataset
@@ -40,7 +40,7 @@ EOS
     }
   end
   def commands
-    run_RApp("EzAppHomerMotifAnalysis", lib_path: "/srv/GT/analysis/jonas/R_LIBS")
+    run_RApp("EzAppCNVkit", lib_path: "/srv/GT/analysis/jonas/R_LIBS")
   end
 end
 
