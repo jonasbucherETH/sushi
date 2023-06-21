@@ -22,6 +22,7 @@ Refer to <a href='https://jgi.doe.gov/data-and-tools/software-tools/bbtools/bb-t
     @params['ram'] = '15'
     @params['scratch'] = '100'
     @params['paired'] = false
+    @params['paired', 'description'] = 'either the reads are paired-ends or single-end'
     #@params['species'] = ''
     #@params['duplicate_distance'] = [40, 2500, 12000]
     #@params['duplicate_distance', 'description'] = 'Max distance to consider for optical duplicates. Higher removes more duplicates but is more likely to
@@ -31,8 +32,6 @@ Refer to <a href='https://jgi.doe.gov/data-and-tools/software-tools/bbtools/bb-t
     #@params['spany', 'description'] = 'Set to true only if NextSeq was used'
     
     @params['sequencing_platform'] = ['HiSeq 1T', 'HiSeq 2500', 'HiSeq 3k', 'HiSeq 4k', 'Novaseq', 'NextSeq', 'Other']
-    
-    @params['paired', 'description'] = 'either the reads are paired-ends or single-end'
     @params['mail'] = ""
     @modules = ["Dev/jdk", "Tools/bbmap/38.89"]
     @inherit_tags = ["Factor", "B-Fabric"]
@@ -54,7 +53,6 @@ Refer to <a href='https://jgi.doe.gov/data-and-tools/software-tools/bbtools/bb-t
       'Read2 [File]' => File.join(@result_dir, "#{File.basename(@dataset['Read2'].to_s).gsub('_val_2.fq.gz', 'fq.gz')}")
       #'Species' => @params['species']
       }.merge(extract_columns(@inherit_tags))
-    end
     #dataset['Read2 [File]'] = File.join(@result_dir, "#{File.basename(@dataset['Read2'].to_s).gsub('_val_2.fq.gz', '.gz')}")
     else
       dataset =  {'Name'=>@dataset['Name'],
@@ -73,7 +71,6 @@ Refer to <a href='https://jgi.doe.gov/data-and-tools/software-tools/bbtools/bb-t
       output_R2 = File.basename(@dataset['Read2']).gsub('_val_2.fq.gz', '.gz')
       command << " out=#{output_R1}"
       command << " in2=#{File.join(SushiFabric::GSTORE_DIR, @dataset['Read2'])} out2=#{output_R2}"
-    end
     else
       output_R1 = File.basename(@dataset['Read1']).gsub('_trimmed.fq.gz', '.gz')
       command << " out=#{output_R1}"
