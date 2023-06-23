@@ -14,7 +14,7 @@ class DNAmeApp <  SushiFabric::SushiApp
     @description =<<-EOS
 DNA methylation analysis<br/>
     EOS
-    @required_columns = ['Name','Read1', 'COV', 'BAM']
+    @required_columns = ['Name', 'COV', 'BAM']
     @required_params = ['name']
     @params['cores'] = '1'
     @params['ram'] = '50'
