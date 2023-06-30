@@ -98,8 +98,10 @@ EOS
        dataset['BigWig [File]'] = File.join(@result_dir, "#{@dataset['Name']}_Cov.bw")
     end
     if @params['allCytosineContexts']
-       dataset['COV CHG [File]'] = File.join(@result_dir, "CHG_#{@dataset['Name']}.gz.bismark.cov.gz")
-       dataset['COV CHH [File]'] = File.join(@result_dir, "CHH_#{@dataset['Name']}.gz.bismark.cov.gz")
+       dataset['COV_CHG [File]'] = File.join(@result_dir, "CHG_#{@dataset['Name']}.gz.bismark.cov.gz")
+       dataset['COV_CHH [File]'] = File.join(@result_dir, "CHH_#{@dataset['Name']}.gz.bismark.cov.gz")
+       dataset['BedGraph_CHG [File]'] = File.join(@result_dir, "CHG_#{@dataset['Name']}.gz")
+       dataset['BedGraph_CHH [File]'] = File.join(@result_dir, "CHH_#{@dataset['Name']}.gz")
     end
     dataset
   end
