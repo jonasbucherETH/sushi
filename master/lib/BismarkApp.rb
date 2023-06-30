@@ -64,6 +64,7 @@ EOS
     @params['length_required','description'] = 'reads shorter than length_required will be discarded.'
     @params['cmdOptionsFastp'] = ''
     @params['generateBigWig'] = false
+    @params['allCytosineContexts'] = false
     @params['mail'] = ""
     @modules = ["Tools/samtools", "Aligner/Bowtie2", "Aligner/Bismark", "QC/fastp", "Dev/R"]
     @inherit_tags = ["Factor", "B-Fabric", "Characteristic"]
@@ -85,9 +86,7 @@ EOS
      'M-Bias_R1 [File]'=>File.join(@result_dir, "#{@dataset['Name']}.M-bias_R1.png"),
      'M-Bias_R2 [File]'=>File.join(@result_dir, "#{@dataset['Name']}.M-bias_R2.png"),
      'CpG_Context [File]'=>File.join(@result_dir, "#{@dataset['Name']}.CpG_context.txt"),
-     'CHG_Context [File]'=>File.join(@result_dir, "#{@dataset['Name']}.CHG_context.txt"),
-     'CHH_Context [File]'=>File.join(@result_dir, "#{@dataset['Name']}.CHH_context.txt"),
-     'COV [File]'=>File.join(@result_dir, "#{@dataset['Name']}.gz.bismark.cov.gz"),
+     'COV [File]'=>File.join(@result_dir, "CpG_#{@dataset['Name']}.gz.bismark.cov.gz"),
      'BedGraph [File]'=>File.join(@result_dir, "#{@dataset['Name']}.gz"),
      'Species'=>@dataset['Species'],
      'refBuild'=>@params['refBuild'],
@@ -97,6 +96,10 @@ EOS
     }.merge(extract_columns(@inherit_tags))
     if @params['generateBigWig']
        dataset['BigWig [File]'] = File.join(@result_dir, "#{@dataset['Name']}_Cov.bw")
+    end
+    if @params['allCytosineContexts']
+       dataset['COV CHG [File]'] = File.join(@result_dir, "CHG_#{@dataset['Name']}.gz.bismark.cov.gz")
+       dataset['COV CHH [File]'] = File.join(@result_dir, "CHH_#{@dataset['Name']}.gz.bismark.cov.gz")
     end
     dataset
   end
