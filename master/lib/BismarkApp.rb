@@ -86,8 +86,8 @@ EOS
      'M-Bias_R1 [File]'=>File.join(@result_dir, "#{@dataset['Name']}.M-bias_R1.png"),
      'M-Bias_R2 [File]'=>File.join(@result_dir, "#{@dataset['Name']}.M-bias_R2.png"),
      'CpG_Context [File]'=>File.join(@result_dir, "#{@dataset['Name']}.CpG_context.txt"),
-     'COV [File]'=>File.join(@result_dir, "CpG_#{@dataset['Name']}.gz.bismark.cov.gz"),
-     'BedGraph [File]'=>File.join(@result_dir, "CpG_#{@dataset['Name']}.gz"),
+     'COV [File]'=>File.join(@result_dir, "#{@dataset['Name']}.gz.bismark.cov.gz"),
+     'BedGraph [File]'=>File.join(@result_dir, "#{@dataset['Name']}.gz"),
      'Species'=>@dataset['Species'],
      'refBuild'=>@params['refBuild'],
      'paired'=>@params['paired'],
@@ -98,10 +98,10 @@ EOS
        dataset['BigWig [File]'] = File.join(@result_dir, "#{@dataset['Name']}_Cov.bw")
     end
     if @params['allCytosineContexts']
-       dataset['COV_CHG [File]'] = File.join(@result_dir, "CHG_#{@dataset['Name']}.gz.bismark.cov.gz")
-       dataset['COV_CHH [File]'] = File.join(@result_dir, "CHH_#{@dataset['Name']}.gz.bismark.cov.gz")
-       dataset['BedGraph_CHG [File]'] = File.join(@result_dir, "CHG_#{@dataset['Name']}.gz")
-       dataset['BedGraph_CHH [File]'] = File.join(@result_dir, "CHH_#{@dataset['Name']}.gz")
+       dataset['COV_CHG [File]'] = File.join(@result_dir, "#{@dataset['Name']}.CHG.gz.bismark.cov.gz")
+       dataset['COV_CHH [File]'] = File.join(@result_dir, "#{@dataset['Name']}.CHH.gz.bismark.cov.gz")
+       dataset['BedGraph_CHG [File]'] = File.join(@result_dir, "#{@dataset['Name']}.CHG.gz")
+       dataset['BedGraph_CHH [File]'] = File.join(@result_dir, "#{@dataset['Name']}.CHH.gz")
        dataset['CHG_Context [File]'] = File.join(@result_dir, "#{@dataset['Name']}.CHG_context.txt")
        dataset['CHH_Context [File]'] = File.join(@result_dir, "#{@dataset['Name']}.CHH_context.txt")
     end
