@@ -102,6 +102,8 @@ EOS
        dataset['COV_CHH [File]'] = File.join(@result_dir, "CHH_#{@dataset['Name']}.gz.bismark.cov.gz")
        dataset['BedGraph_CHG [File]'] = File.join(@result_dir, "CHG_#{@dataset['Name']}.gz")
        dataset['BedGraph_CHH [File]'] = File.join(@result_dir, "CHH_#{@dataset['Name']}.gz")
+       dataset['CHG_Context [File]']=>File.join(@result_dir, "#{@dataset['Name']}.CHG_context.txt")
+       dataset['CHH_Context [File]']=>File.join(@result_dir, "#{@dataset['Name']}.CHH_context.txt")
     end
     dataset
   end
