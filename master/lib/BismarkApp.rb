@@ -88,6 +88,7 @@ EOS
      'CpG_Context [File]'=>File.join(@result_dir, "#{@dataset['Name']}.CpG_context.txt"),
      'COV [File]'=>File.join(@result_dir, "#{@dataset['Name']}.gz.bismark.cov.gz"),
      'BedGraph [File]'=>File.join(@result_dir, "#{@dataset['Name']}.gz"),
+     'CpG_report [File]'=>File.join(@result_dir, "#{@dataset['Name']}CpG_report.txt.gz"),
      'Species'=>@dataset['Species'],
      'refBuild'=>@params['refBuild'],
      'paired'=>@params['paired'],
@@ -104,6 +105,8 @@ EOS
        dataset['BedGraph_CHH [File]'] = File.join(@result_dir, "#{@dataset['Name']}.CHH.gz")
        dataset['CHG_Context [File]'] = File.join(@result_dir, "#{@dataset['Name']}.CHG_context.txt")
        dataset['CHH_Context [File]'] = File.join(@result_dir, "#{@dataset['Name']}.CHH_context.txt")
+       dataset['CpG_report [File]'] = File.join(@result_dir, "#{@dataset['Name']}CHG_report.txt.gz")
+       dataset['CpG_report [File]'] = File.join(@result_dir, "#{@dataset['Name']}CHH_report.txt.gz")
     end
     dataset
   end
