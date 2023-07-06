@@ -108,7 +108,7 @@ EOS
     dataset
   end
   def commands
-    run_RApp("EzAppBismark")
+    run_RApp("EzAppBismark", lib_path: "/srv/GT/analysis/jonas/R_LIBS")
   end
 end
 
