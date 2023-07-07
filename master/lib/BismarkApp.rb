@@ -65,6 +65,9 @@ EOS
     @params['cmdOptionsFastp'] = ''
     @params['generateBigWig'] = false
     @params['allCytosineContexts'] = false
+    @params['directional'] = false
+    @params['directional','description'] = 'is the library directional?'
+    @params['dirty_harry'] = false
     @params['mail'] = ""
     @modules = ["Tools/samtools", "Aligner/Bowtie2", "Aligner/Bismark", "QC/fastp", "Dev/R"]
     @inherit_tags = ["Factor", "B-Fabric", "Characteristic"]
