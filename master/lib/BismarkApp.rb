@@ -107,8 +107,11 @@ EOS
        dataset['BedGraph_CHH [File]'] = File.join(@result_dir, "#{@dataset['Name']}.CHH.gz")
        dataset['CHG_Context [File]'] = File.join(@result_dir, "#{@dataset['Name']}.CHG_context.txt")
        dataset['CHH_Context [File]'] = File.join(@result_dir, "#{@dataset['Name']}.CHH_context.txt")
-       dataset['CX_report [File]'] = File.join(@result_dir, "#{@dataset['Name']}.CX_report.txt.gz")
-
+       #dataset['CX_report [File]'] = File.join(@result_dir, "#{@dataset['Name']}.CX_report.txt.gz")
+       dataset['CX_report [File]'] = File.join(@result_dir, "#{@dataset['Name']}.CX_report.txt")
+       dataset['CpG_report [File]'] = File.join(@result_dir, "#{@dataset['Name']}.CG_report.txt")
+       dataset['CHG_report [File]'] = File.join(@result_dir, "#{@dataset['Name']}.CHG_report.txt")
+       dataset['CHH_report [File]'] = File.join(@result_dir, "#{@dataset['Name']}.CHH_report.txt")
     end
     dataset
   end
