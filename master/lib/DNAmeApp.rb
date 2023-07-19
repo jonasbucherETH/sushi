@@ -19,18 +19,28 @@ DNA methylation analysis<br/>
     @params['cores'] = '1'
     @params['ram'] = '50'
     @params['scratch'] = '100'
+    @params['allCytosineContexts'] = false
+    @params['allCytosineContexts', 'description'] = 'place holder'
     @params['refBuild'] = ref_selector
-    @params['refBuild', 'description'] = 'Select one ending with /Annotation/Version_[...] or /Annotation/Release_[...]'
+    @params['refBuild', 'description'] = 'place holder'
     #@params['refFeatureFile'] = 'genes.gtf'
     #@params['refFeatureFile'] = '../../Sequence/WholeGenomeFasta/genome.fa'
     @params['grouping'] = ''
-    @params['grouping', 'description'] = 'Specify the column name of your co-variate to 
+    @params['grouping', 'description'] = 'testCovariate: Specify the column name of your co-variate to 
     split the samples into groups for testing for differential methylation. Make sure the
     column name is in the format "NAME [Factor]" or "NAME [Numeric]"'
     @params['sampleGroup'] = '' ## Note: this will be a selector defined by Factor tagged column
     @params['sampleGroup', 'description'] = 'Test group. sampleGroup should be different from refGroup'
     @params['refGroup'] = '' ## Note: this will be a selector defined by Factor tagged column
     @params['refGroup', 'description'] = 'Control group. refGroup should be different from sampleGroup'
+=begin
+    @params['grouping2'] = ''
+    @params['grouping2', 'description'] = 'adjustCovariate: Specify the column name of your variable to adjust for when testing for differential methylation'
+    @params['sampleGroup2'] = '' ## Note: this will be a selector defined by Factor tagged column
+    @params['sampleGroup2', 'description'] = 'Test group. sampleGroup should be different from refGroup'
+    @params['refGroup2'] = '' ## Note: this will be a selector defined by Factor tagged column
+    @params['refGroup2', 'description'] = 'Control group. refGroup should be different from sampleGroup'
+=end    
     @params['biomart_selection'] = biomart_selector
     @params['name'] = 'DNAme'
     @params['mail'] = ""
