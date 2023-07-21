@@ -68,6 +68,7 @@ EOS
     @params['directional'] = false
     @params['directional','description'] = 'is the library directional?'
     @params['dirty_harry'] = false
+    @params['dirty_harry','description'] = 'Only possible for paired end'
     @params['mail'] = ""
     @modules = ["Tools/samtools", "Aligner/Bowtie2", "Aligner/Bismark", "QC/fastp", "Dev/R"]
     @inherit_tags = ["Factor", "B-Fabric", "Characteristic"]
@@ -108,10 +109,10 @@ EOS
        dataset['CHG_Context [File]'] = File.join(@result_dir, "#{@dataset['Name']}.CHG_context.txt")
        dataset['CHH_Context [File]'] = File.join(@result_dir, "#{@dataset['Name']}.CHH_context.txt")
        #dataset['CX_report [File]'] = File.join(@result_dir, "#{@dataset['Name']}.CX_report.txt.gz")
-       dataset['CX_report [File]'] = File.join(@result_dir, "#{@dataset['Name']}.CX_report.txt")
-       dataset['CpG_report [File]'] = File.join(@result_dir, "#{@dataset['Name']}.CG_report.txt")
-       dataset['CHG_report [File]'] = File.join(@result_dir, "#{@dataset['Name']}.CHG_report.txt")
-       dataset['CHH_report [File]'] = File.join(@result_dir, "#{@dataset['Name']}.CHH_report.txt")
+       dataset['CX_report [File]'] = File.join(@result_dir, "#{@dataset['Name']}.CX_report.txt.gz")
+       dataset['CpG_report [File]'] = File.join(@result_dir, "#{@dataset['Name']}.CG_report.txt.gz")
+       dataset['CHG_report [File]'] = File.join(@result_dir, "#{@dataset['Name']}.CHG_report.txt.gz")
+       dataset['CHH_report [File]'] = File.join(@result_dir, "#{@dataset['Name']}.CHH_report.txt.gz")
     end
     dataset
   end
