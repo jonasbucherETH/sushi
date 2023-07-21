@@ -21,6 +21,8 @@ DNA methylation analysis<br/>
     @params['scratch'] = '100'
     @params['allCytosineContexts'] = false
     @params['allCytosineContexts', 'description'] = 'place holder'
+    @params['minCoverageBases'] = 5
+    @params['minCoverageBases', 'description'] = 'Minimum coverage of bases to be included in the DML analysis'
     @params['refBuild'] = ref_selector
     @params['refBuild', 'description'] = 'place holder'
     #@params['refFeatureFile'] = 'genes.gtf'
