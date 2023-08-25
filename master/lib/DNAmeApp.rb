@@ -16,7 +16,7 @@ DNA methylation analysis<br/>
     EOS
     @required_columns = ['Name', 'COV', 'BAM']
     @required_params = ['name']
-    @params['cores'] = '1'
+    @params['cores'] = '4'
     @params['ram'] = '50'
     @params['scratch'] = '100'
     @params['allCytosineContexts'] = false
@@ -24,7 +24,7 @@ DNA methylation analysis<br/>
     @params['minCoverageBases'] = 5
     @params['minCoverageBases', 'description'] = 'Minimum coverage of bases to be included in the DML analysis'
     @params['refBuild'] = ref_selector
-    @params['refBuild', 'description'] = 'place holder'
+    #@params['refBuild', 'description'] = 'place holder'
     #@params['refFeatureFile'] = 'genes.gtf'
     #@params['refFeatureFile'] = '../../Sequence/WholeGenomeFasta/genome.fa'
     @params['grouping'] = ''
@@ -35,7 +35,19 @@ DNA methylation analysis<br/>
     @params['sampleGroup', 'description'] = 'Test group. sampleGroup should be different from refGroup'
     @params['refGroup'] = '' ## Note: this will be a selector defined by Factor tagged column
     @params['refGroup', 'description'] = 'Control group. refGroup should be different from sampleGroup'
+    @params['cutoffRegions'] = 0.1 
+    @params['cutoffRegions', 'description'] = 'cutoff for absolute value of methylation percentage change between test and control to discover candidate regions'
+    @params['qvalRegions'] = 0.05 
+    @params['qvalRegions', 'description'] = 'q-value cutoff to identify significantly differentially methylated regions'
+    @params['cutoffLoci'] = 25 
+    @params['cutoffLoci', 'description'] = 'cutoff for absolute value of methylation percentage change between test and control'
+    @params['qvalLoci'] = 0.01 
+    @params['qvalLoci', 'description'] = 'q-value cutoff to identify significantly differentially methylated loci'
 =begin
+    @params['lowPerc'] = 0.1 
+    @params['lowPerc', 'description'] = 'Bases having lower coverage percentage than this are discarded'
+    @params['highPerc'] = 99.9 
+    @params['highPerc', 'description'] = 'Bases having higher coverage percentage than this are discarded'
     @params['grouping2'] = ''
     @params['grouping2', 'description'] = 'adjustCovariate: Specify the column name of your variable to adjust for when testing for differential methylation'
     @params['sampleGroup2'] = '' ## Note: this will be a selector defined by Factor tagged column

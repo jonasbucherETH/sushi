@@ -31,7 +31,7 @@ Refer to <a href='https://jgi.doe.gov/data-and-tools/software-tools/bbtools/bb-t
     #@params['spany'] = false
     #@params['spany', 'description'] = 'Set to true only if NextSeq was used'
     
-    @params['sequencing_platform'] = ['HiSeq 1T', 'HiSeq 2500', 'HiSeq 3k', 'HiSeq 4k', 'Novaseq', 'NextSeq', 'Other']
+    @params['sequencing_platform'] = ['HiSeq 1T', 'HiSeq 2500', 'HiSeq 3k', 'HiSeq 4k', 'Novaseq / X-patterned flowcell', 'NextSeq', 'Other']
     @params['mail'] = ""
     @modules = ["Dev/jdk", "Tools/bbmap/38.89"]
     @inherit_tags = ["Factor", "B-Fabric"]
@@ -67,7 +67,7 @@ Refer to <a href='https://jgi.doe.gov/data-and-tools/software-tools/bbtools/bb-t
     command = ""
     command << "clumpify.sh in=#{File.join(SushiFabric::GSTORE_DIR, @dataset['Read1'])}"
     if @params['paired']
-      output_R1 = File.join(@result_dir, "#{File.basename(@dataset['Read1']).gsub('_val_1.fq.gz', '.fq.gz')}")
+      output_R1 = File.basename(@dataset['Read1']).gsub('_val_1.fq.gz', '.fq.gz')
       output_R2 = File.join(@result_dir, "#{File.basename(@dataset['Read2']).gsub('_val_2.fq.gz', '.fq.gz')}")
       command << " out=#{output_R1}"
       command << " in2=#{File.join(SushiFabric::GSTORE_DIR, @dataset['Read2'])} out2=#{output_R2}"
@@ -85,7 +85,7 @@ Refer to <a href='https://jgi.doe.gov/data-and-tools/software-tools/bbtools/bb-t
     command << " qin=auto" # auto/33/64
     #dupe_dist = #{@params['illuminaclip']}
 
-    if @params['sequencing_platform'] == 'NextSeq'
+    if @params['sequencing_platform'] == 'NextSeq' or @params['sequencing_platform'] == 'Novaseq / X-patterned flowcell'
       command << " spany=t adjacent=t"
       #command << " adjacent=t"
     end
@@ -100,7 +100,7 @@ Refer to <a href='https://jgi.doe.gov/data-and-tools/software-tools/bbtools/bb-t
       #command << " adjacent=t"
     end
     
-    if @params['sequencing_platform'] == 'Novaseq'
+    if @params['sequencing_platform'] == 'Novaseq / X-patterned flowcell'
       command << " dupedist=12000"
       #command << " adjacent=t"
     end
