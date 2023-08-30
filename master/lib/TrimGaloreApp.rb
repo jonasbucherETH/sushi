@@ -25,8 +25,8 @@ Refer to <a href='https://www.bioinformatics.babraham.ac.uk/projects/trim_galore
     @params['paired', 'description'] = 'either the reads are paired-ends or single-end'
     @params['method_rrbs'] = false
     @params['method_rrbs', 'description'] = 'If RRBS was used, but the DNA material was digested with MseI instead of MspI, pick false'
-    @params['rrbs_directional'] = true
-    @params['rrbs_directional', 'description'] = 'RRBS library type: true = directional, false = non-directional'
+    @params['rrbs_non_directional'] = false
+    @params['rrbs_non_directional', 'description'] = 'RRBS library type: true = directional, false = non-directional. Only can be true if method_rrbs=true.'
     @params['quality_type'] = ['phred33', 'phred64']
     @params['quality_type', 'description'] = 'Fastq quality score type, if you use Illumina HiSeq or MySeq, chose phred33'
     @params['quality_threshold'] = '20'
@@ -41,7 +41,9 @@ Refer to <a href='https://www.bioinformatics.babraham.ac.uk/projects/trim_galore
     #  'FastQC checking Adapter' => '/srv/GT/databases/adapter/adapter_list.fa',
     #}
     @params['adapter'] = ['', 'illumina', 'nextera', 'small_rna']
-    @params['adapter', 'description'] = 'auto-detects adapter sequence when not specified'
+    @params['adapter', 'description'] = 'common adapters'
+    @params['adapter_sequence'] = ""
+    @params['adapter_sequence', 'description'] = 'String of capital letters for other adapters. Adapter is auto-detected when neither adapter or adapter_sequence is specified. Do not specify both parameters.'
     @params['mail'] = ""
     #@modules = ["trim_galore/0.6.10"]
     @modules = ["Tools/samtools"]
@@ -84,12 +86,19 @@ Refer to <a href='https://www.bioinformatics.babraham.ac.uk/projects/trim_galore
     if @params['method_rrbs']
       command << " --rrbs"
     end
-    unless @params['rrbs_directional']
+    if @params['rrbs_non_directional']
       command << " --non_directional"
     end
-    unless @params['adapter'].to_s.empty?
-        #command << "cat #{@params['adapter']} >> #{adapters_fa}\n"
-        command << " --#{@params['adapter']}"
+    #unless @params['adapter'].to_s.empty?
+    #  command << " --#{@params['adapter']}"
+    #end
+    if @params['adapter'].to_s.empty?
+      unless @params['adapter_sequence'].to_s.empty?
+        command << " --adapter #{@params['adapter_sequence']}"
+      end
+    end
+    else
+      command << " --#{@params['adapter']}"
     end
     
     # files
