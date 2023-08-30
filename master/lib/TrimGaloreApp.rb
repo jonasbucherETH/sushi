@@ -96,7 +96,6 @@ Refer to <a href='https://www.bioinformatics.babraham.ac.uk/projects/trim_galore
       unless @params['adapter_sequence'].to_s.empty?
         command << " --adapter #{@params['adapter_sequence']}"
       end
-    end
     else
       command << " --#{@params['adapter']}"
     end
