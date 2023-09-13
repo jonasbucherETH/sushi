@@ -26,7 +26,7 @@ Refer to <a href='https://www.bioinformatics.babraham.ac.uk/projects/trim_galore
     @params['method_rrbs'] = false
     @params['method_rrbs', 'description'] = 'If RRBS was used, but the DNA material was digested with MseI instead of MspI, pick false'
     @params['rrbs_non_directional'] = false
-    @params['rrbs_non_directional', 'description'] = 'RRBS library type: true = directional, false = non-directional. Only can be true if method_rrbs=true.'
+    @params['rrbs_non_directional', 'description'] = 'RRBS library type: true = non-directional, false = directional. Only can be true if method_rrbs=true.'
     @params['quality_type'] = ['phred33', 'phred64']
     @params['quality_type', 'description'] = 'Fastq quality score type, if you use Illumina HiSeq or MySeq, chose phred33'
     @params['quality_threshold'] = '20'
@@ -85,6 +85,8 @@ Refer to <a href='https://www.bioinformatics.babraham.ac.uk/projects/trim_galore
     
     if @params['method_rrbs']
       command << " --rrbs"
+    else
+      command << " --trim-n"
     end
     if @params['rrbs_non_directional']
       command << " --non_directional"
